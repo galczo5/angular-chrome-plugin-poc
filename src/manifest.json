@@ -1,0 +1,33 @@
+{
+  "version": "2.17.1",
+  "name": "DevTools",
+  "short_name": "DevTools",
+  "description": "",
+  "homepage_url": "https://github.com/galczo5/angular-chrome-plugin-poc",
+  "manifest_version": 2,
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "exclude_globs": [ "https://www.google*" ],
+      "js": ["content.js"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "devtools_page": "devtools.html",
+  "web_accessible_resources": [
+    "main.js",
+    "polyfills.js",
+    "runtime.js",
+    "vendor.js"
+  ],
+  "externally_connectable": {
+    "ids": ["*"]
+  },
+  "permissions": [ "notifications", "contextMenus", "tabs", "storage", "<all_urls>" ],
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'; style-src * 'unsafe-inline'; img-src 'self' data:;"
+}
